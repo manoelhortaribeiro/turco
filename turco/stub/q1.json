@@ -1,0 +1,8 @@
+{
+    "num_tweets": 3,
+    "number_characters": 280,
+    "tweets": [
+            ["1","text tweet 1"],
+            ["2","text tweet 2"],
+            ["3","text tweet 3"]]
+}

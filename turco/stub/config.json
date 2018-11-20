@@ -1,0 +1,51 @@
+{
+  "xml": "<HTMLQuestion xmlns=\"http://mechanicalturk.amazonaws.com/AWSMechanicalTurkDataSchemas/2011-11-11/HTMLQuestion.xsd\"><HTMLContent><![CDATA[{0}]]></HTMLContent><FrameHeight>2000</FrameHeight></HTMLQuestion>",
+  "commons": {
+    "num_characters": 280
+  },
+  "arguments": {
+    "Title": "Classify Tweets (Food poisoning)",
+    "Description": "Decide whether the tweet is related to food poisoning",
+    "Keywords": "summarization, writing, research",
+    "Reward": "0.10",
+    "MaxAssignments": 3,
+    "LifetimeInSeconds": 500000,
+    "AssignmentDurationInSeconds": 3600,
+    "AutoApprovalDelayInSeconds": 28800,
+    "Question": false,
+    "QualificationRequirements": [
+      {
+        "QualificationTypeId": "00000000000000000071",
+        "Comparator": "In",
+        "LocaleValues": [
+          {
+            "Country": "US"
+          },
+          {
+            "Country": "CA"
+          },
+          {
+            "Country": "GB"
+          },
+          {
+            "Country": "CH"
+          }
+        ]
+      },
+      {
+        "QualificationTypeId": "000000000000000000L0",
+        "Comparator": "GreaterThan",
+        "IntegerValues": [
+          98
+        ]
+      },
+      {
+        "QualificationTypeId": "00000000000000000040",
+        "Comparator": "GreaterThan",
+        "IntegerValues": [
+          100
+        ]
+      }
+    ]
+  }
+}
