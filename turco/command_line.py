@@ -108,24 +108,6 @@ def publish_questions():
     parser = argparse.ArgumentParser(prog='init')
     parser.add_argument('-p', help='path to create the stub')
     parser.add_argument("-pay", help="pay real money")
-
-    args = parser.parse_args()
-
-    path = args.p
-    pay = args.pay
-
-    if pay is not None:
-        args["pay_real_money"] = True
-
-    default_args = load_args(path)
-    mturk_helper = MTurkHelper(**default_args)
-    mturk_helper.publish_questions()
-
-
-def retrieve_questions():
-    parser = argparse.ArgumentParser(prog='init')
-    parser.add_argument('-p', help='path to create the stub')
-    parser.add_argument("-pay", help="pay real money")
     parser.add_argument("-alternames", help="alter names, splitting hits on the web interface")
 
     args = parser.parse_args()
@@ -137,6 +119,7 @@ def retrieve_questions():
     if pay is not None:
         args["pay_real_money"] = True
 
+
     if alter_names is not None:
         alter_names = True
     else:
@@ -144,4 +127,22 @@ def retrieve_questions():
 
     default_args = load_args(path)
     mturk_helper = MTurkHelper(**default_args)
-    mturk_helper.get_replies(alter_names=alter_names)
+    mturk_helper.publish_questions(alter_names=alter_names)
+
+def retrieve_questions():
+    parser = argparse.ArgumentParser(prog='init')
+    parser.add_argument('-p', help='path to create the stub')
+    parser.add_argument("-pay", help="pay real money")
+
+    args = parser.parse_args()
+
+    path = args.p
+    pay = args.pay
+
+    if pay is not None:
+        args["pay_real_money"] = True
+
+
+    default_args = load_args(path)
+    mturk_helper = MTurkHelper(**default_args)
+    mturk_helper.get_replies()
