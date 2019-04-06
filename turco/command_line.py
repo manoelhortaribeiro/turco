@@ -119,7 +119,6 @@ def publish_questions():
     if pay is not None:
         args["pay_real_money"] = True
 
-
     if alter_names is not None:
         alter_names = True
     else:
