@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='turco',
-      version='0.1',
+      version='0.11',
       description='easy to use library that automates a bunch of stuff in Amazon mechanical turk ',
       url='http://github.com/manoelhortaribeiro/turco',
       author='Manoel Horta Ribeiro',

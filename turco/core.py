@@ -9,11 +9,11 @@ import pandas as pd
 
 class MTurkHelper(object):
 
-    def __init__(self, pay_real_money, config_path, secrets_path, template_path, logs_path, xml,
+    def __init__(self, pay, config_path, secrets_path, template_path, logs_path, xml,
                  control_qualifications_path, qualification_folder_path, src_folder_path, xml_folder_path,
                  out_folder_path, queue_url=None, also_print=True):
 
-        self.pay_real_money = pay_real_money
+        self.pay = pay
         self.config_path = config_path
         self.template_path = template_path
         self.qualification_folder_path = qualification_folder_path
@@ -28,7 +28,7 @@ class MTurkHelper(object):
         with open(secrets_path, "r") as f:
             secrets = json.load(f)
 
-        endpoint = "https://mturk-requester.us-east-1.amazonaws.com" if pay_real_money else \
+        endpoint = "https://mturk-requester.us-east-1.amazonaws.com" if pay else \
                     'https://mturk-requester-sandbox.us-east-1.amazonaws.com'
 
         self.mturk = boto3.client('mturk',
@@ -73,7 +73,7 @@ class MTurkHelper(object):
         with open(qualifications_path, "r") as f:
             qualification_arguments = json.load(f)
 
-        if self.pay_real_money:
+        if self.pay:
             qualification_arguments_tmp = qualification_arguments["RealMoney"]
         else:
             qualification_arguments_tmp = qualification_arguments["FakeMoney"]
@@ -93,7 +93,7 @@ class MTurkHelper(object):
         with open(qualifications_path, "r") as f:
             qualification_arguments = json.load(f)
 
-        if self.pay_real_money:
+        if self.pay:
             qualification_arguments["RealMoney"] = qualification_arguments_tmp
         else:
             qualification_arguments["FakeMoney"] = qualification_arguments_tmp
@@ -454,7 +454,7 @@ class MTurkHelper(object):
             if question_based_blocking_id:
                 question_configs["QualificationRequirements"].pop(-1)
 
-            if self.pay_real_money:
+            if self.pay:
                 self.log_append("{0} Hit was created\nhttps://worker.mturk.com/mturk/preview?groupId={1}"
                                 .format(new_hit['HIT']['HITId'], new_hit['HIT']['HITGroupId']), also_print=True)
             else:

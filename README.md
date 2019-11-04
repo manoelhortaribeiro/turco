@@ -33,7 +33,7 @@ We use the jinja2 templating library, as portrayed by:
         ...
         template.html
 
-This is nothing more than a Jinja2 html template that will be rendered inside a [HTMLQuestion][1] (a data structure provided by amazon). What goes "inside" the template changes for each different hit (duh). For each HIT we want to create, we simply have to create a corresponding `.json` file in the `my-hit/out/` folder!
+This is nothing more than a Jinja2 html template that will be rendered inside a [HTMLQuestion][1] (a data structure provided by amazon). What goes "inside" the template changes for each different hit (duh). For each HIT we want to create, we simply have to create a corresponding `.json` file in the `my-hit/src/` folder!
 
 So for example, in the stub we create, we have the following template:
 

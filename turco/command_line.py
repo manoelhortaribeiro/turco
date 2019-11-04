@@ -68,7 +68,7 @@ def init():
     copyfile(template_src, template_dst)
 
     default_args = {
-        "pay_real_money": False,
+        "pay": False,
         "config_path": os.path.abspath(config_dst),
         "secrets_path": os.path.abspath(secrets_dst),
         "template_path": os.path.abspath(template_dst),
@@ -107,41 +107,25 @@ def create_questions():
 def publish_questions():
     parser = argparse.ArgumentParser(prog='init')
     parser.add_argument('-p', help='path to create the stub')
-    parser.add_argument("-pay", help="pay real money")
-    parser.add_argument("-alternames", help="alter names, splitting hits on the web interface")
-
+    parser.add_argument("-pay", help="pay real money", action="store_true")
+    parser.add_argument("-alternames", help="alter names, splitting hits on the web interface", action="store_true")
     args = parser.parse_args()
-
     path = args.p
-    pay = args.pay
     alter_names = args.alternames
-
-    if pay is not None:
-        args["pay_real_money"] = True
-
-    if alter_names is not None:
-        alter_names = True
-    else:
-        alter_names = False
-
     default_args = load_args(path)
+    default_args["pay"] = args.pay
+    print(default_args)
     mturk_helper = MTurkHelper(**default_args)
     mturk_helper.publish_questions(alter_names=alter_names)
+
 
 def retrieve_questions():
     parser = argparse.ArgumentParser(prog='init')
     parser.add_argument('-p', help='path to create the stub')
-    parser.add_argument("-pay", help="pay real money")
-
+    parser.add_argument("-pay", help="pay real money", action="store_true")
     args = parser.parse_args()
-
     path = args.p
-    pay = args.pay
-
-    if pay is not None:
-        args["pay_real_money"] = True
-
-
     default_args = load_args(path)
+    default_args["pay"] = args.pay
     mturk_helper = MTurkHelper(**default_args)
     mturk_helper.get_replies()
